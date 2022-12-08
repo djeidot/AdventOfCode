@@ -3,24 +3,23 @@ fun day8() {
 
     fun isVisible(row: Int, column: Int): Boolean {
         val line = lines[row]
-        val cell = lines[row][column].digitToInt()
-        return line.subSequence(0, column).all { it.digitToInt() < cell } ||
-            line.subSequence(column + 1, line.length).all { it.digitToInt() < cell } ||
-            lines.subList(0, row).all { it[column].digitToInt() < cell } ||
-            lines.subList(row + 1, lines.size).all { it[column].digitToInt() < cell }
+        val cell = lines[row][column]
+        return line.subSequence(0, column).all { it < cell } ||
+            line.subSequence(column + 1, line.length).all { it < cell } ||
+            lines.subList(0, row).all { it[column] < cell } ||
+            lines.subList(row + 1, lines.size).all { it[column] < cell }
     }
 
     fun scenicScore(row: Int, column: Int): Int {
-        fun <T> List<T>.treesViewed(cell: Int, op: (T) -> Int): Int {
-            return this.indexOfFirst { op(it) >= cell }.let { if (it == -1) this.lastIndex else it } + 1
-        }
+        fun <T> List<T>.treesViewed(cell: Char, op: (T) -> Char) =
+            indexOfFirst { op(it) >= cell }.let { if (it == -1) this.lastIndex else it } + 1
         
         val line = lines[row]
-        val cell = lines[row][column].digitToInt()
-        val left = line.subSequence(0, column).reversed().toList().treesViewed(cell) { it.digitToInt() }
-        val right = line.subSequence(column + 1, line.length).toList().treesViewed(cell) { it.digitToInt() }
-        val up = lines.subList(0, row).reversed().treesViewed(cell) { it[column].digitToInt() }
-        val down = lines.subList(row + 1, lines.size).treesViewed(cell) { it[column].digitToInt() }
+        val cell = lines[row][column]
+        val left = line.subSequence(0, column).reversed().toList().treesViewed(cell) { it }
+        val right = line.subSequence(column + 1, line.length).toList().treesViewed(cell) { it }
+        val up = lines.subList(0, row).reversed().treesViewed(cell) { it[column] }
+        val down = lines.subList(row + 1, lines.size).treesViewed(cell) { it[column] }
         return left * right * up * down
     }
     
