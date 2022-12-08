@@ -1,5 +1,5 @@
 fun main() {
-    day7()
+    day8()
 }
 
 // helpers
