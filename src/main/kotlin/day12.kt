@@ -1,10 +1,3 @@
-enum class Direction {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-}
-
 fun day12() {
     val lines = readResource("day12.txt")
 
