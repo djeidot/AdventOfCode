@@ -1,13 +1,13 @@
-data class Position(var x: Int, var y: Int)
+data class PositionXY(var x: Int, var y: Int)
 
 
 fun day9() {
-    val head = Position(0, 0)
+    val head = PositionXY(0, 0)
     val tailSize = 1
-    val tails = List(tailSize) { Position(0, 0) }
+    val tails = List(tailSize) { PositionXY(0, 0) }
     val tailPositions = mutableSetOf(tails.last().copy())
 
-    fun moveTail(front: Position, back: Position) {
+    fun moveTail(front: PositionXY, back: PositionXY) {
         val diffX = front.x - back.x
         val diffY = front.y - back.y
 

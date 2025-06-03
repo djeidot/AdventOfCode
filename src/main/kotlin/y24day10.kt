@@ -2,10 +2,10 @@ import kotlin.math.abs
 
 class Trail(r: Int, c: Int) {
 
-    val steps = List(10) { mutableSetOf<PositionRC>() }
+    val steps = List(10) { mutableSetOf<Position>() }
 
     init {
-        steps[0].add(PositionRC(r, c))
+        steps[0].add(Position(r, c))
     }
 }
 
@@ -24,7 +24,7 @@ fun y24day10() {
         }
     }
 
-    fun tryDir(pos: PositionRC, dir: Direction, id: Int): Boolean {
+    fun tryDir(pos: Position, dir: Direction, id: Int): Boolean {
         val newPos = pos.offset(dir)
         if (newPos.r !in 0 until height || newPos.c !in 0 until width) {
             return false
@@ -32,7 +32,7 @@ fun y24day10() {
         return lines[newPos.r][newPos.c].digitToInt() == id
     }
 
-    fun isConnected(pos1: PositionRC, pos2: PositionRC): Boolean =
+    fun isConnected(pos1: Position, pos2: Position): Boolean =
         (abs(pos1.r - pos2.r) == 1 && pos1.c == pos2.c)
                 || (abs(pos1.c - pos2.c) == 1 && pos1.r == pos2.r)
 
@@ -48,7 +48,7 @@ fun y24day10() {
         }
     }
 
-    fun getRating(trail: Trail, pos: PositionRC, step: Int): Int {
+    fun getRating(trail: Trail, pos: Position, step: Int): Int {
         if (step == 0) {
             return 1
         }

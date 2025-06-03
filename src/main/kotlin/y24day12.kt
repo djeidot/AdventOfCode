@@ -1,5 +1,5 @@
-class Region(firstPos: PositionRC) {
-    val positions = mutableListOf<PositionRC>()
+class Region(firstPos: Position) {
+    val positions = mutableListOf<Position>()
 
     init {
         positions.add(firstPos)
@@ -27,7 +27,7 @@ class Region(firstPos: PositionRC) {
 fun y24day12() {
     val lines = readResource("y24day12.txt")
 
-    fun getAt(pos: PositionRC) = lines[pos.r][pos.c]
+    fun getAt(pos: Position) = lines[pos.r][pos.c]
 
     val regions = mutableMapOf<Char, MutableList<Region>>()
 
@@ -35,7 +35,7 @@ fun y24day12() {
     for (r in 0 until lines.count()) {
         for (c in 0 until lines[r].count()) {
             val letter = lines[r][c]
-            val pos = PositionRC(r, c)
+            val pos = Position(r, c)
             if (letter in regions.keys) {
                 val regionList = regions[letter]
                 var foundAdjacent = false
@@ -82,6 +82,6 @@ fun y24day12() {
     println("total side area is $totalSideArea")
 }
 
-fun hasAdjacents(pos: PositionRC, region: Region): Boolean = region.positions.any { isAdjacent(pos, it) }
-fun isAdjacent(pos: PositionRC, otherPos: PositionRC): Boolean = Direction.values().any { pos.offset(it) == otherPos }
+fun hasAdjacents(pos: Position, region: Region): Boolean = region.positions.any { isAdjacent(pos, it) }
+fun isAdjacent(pos: Position, otherPos: Position): Boolean = Direction.values().any { pos.offset(it) == otherPos }
 

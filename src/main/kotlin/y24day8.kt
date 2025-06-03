@@ -1,6 +1,6 @@
 fun y24day8() {
-    val antennas = mutableMapOf<Char, MutableList<Position>>()
-    val antinodes = mutableSetOf<Position>()
+    val antennas = mutableMapOf<Char, MutableList<PositionXY>>()
+    val antinodes = mutableSetOf<PositionXY>()
 
     val lines = readResource("y24day8.txt")
     val height = lines.count()
@@ -12,12 +12,12 @@ fun y24day8() {
                 if (char !in antennas.keys) {
                     antennas[char] = mutableListOf();
                 }
-                antennas[char]!!.add(Position(x, y))
+                antennas[char]!!.add(PositionXY(x, y))
             }
         }
     }
 
-    fun verifyAdd(pos: Position): Boolean {
+    fun verifyAdd(pos: PositionXY): Boolean {
         if (pos.x in 0 until width && pos.y in 0 until height)
         {
             antinodes.add(pos)
@@ -26,13 +26,13 @@ fun y24day8() {
         return false
     }
 
-    fun iterateAdd(pos: Position, diff: Position, forwards: Boolean) {
+    fun iterateAdd(pos: PositionXY, diff: PositionXY, forwards: Boolean) {
         if (!verifyAdd(pos)) return
 
         val newPos = if (forwards)
-            Position(pos.x + diff.x, pos.y + diff.y)
+            PositionXY(pos.x + diff.x, pos.y + diff.y)
         else
-            Position(pos.x - diff.x, pos.y - diff.y)
+            PositionXY(pos.x - diff.x, pos.y - diff.y)
 
         iterateAdd(newPos, diff, forwards)
     }
@@ -42,7 +42,7 @@ fun y24day8() {
             val pos1 = positions[i]
             for (j in i + 1..positions.lastIndex) {
                 val pos2 = positions[j]
-                val diff = Position(pos2.x - pos1.x, pos2.y - pos1.y)
+                val diff = PositionXY(pos2.x - pos1.x, pos2.y - pos1.y)
 
                 iterateAdd(pos1, diff, false)
                 iterateAdd(pos2, diff, true)

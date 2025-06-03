@@ -3,11 +3,11 @@ import java.lang.Integer.min
 import kotlin.math.abs
 
 fun day15() {
-    data class Position(val x: Int, val y: Int) {
-        fun distanceFrom(other: Position) = abs(x - other.x) + abs(y - other.y)
+    data class PositionXY(val x: Int, val y: Int) {
+        fun distanceFrom(other: PositionXY) = abs(x - other.x) + abs(y - other.y)
     }
 
-    val sensorsToBeacons = mutableMapOf<Position, Position>()
+    val sensorsToBeacons = mutableMapOf<PositionXY, PositionXY>()
     val lines = readResource("day15.txt")
     for (line in lines) {
         val lineList = line.split(' ')
@@ -15,7 +15,7 @@ fun day15() {
         val sensorY = lineList[3].removePrefix("y=").removeSuffix(":").toInt()
         val beaconX = lineList[8].removePrefix("x=").removeSuffix(",").toInt()
         val beaconY = lineList[9].removePrefix("y=").toInt()
-        sensorsToBeacons[Position(sensorX, sensorY)] = Position(beaconX, beaconY)
+        sensorsToBeacons[PositionXY(sensorX, sensorY)] = PositionXY(beaconX, beaconY)
     }
 
     fun getNonBeacons(targetY: Int): Set<Int> {

@@ -1,7 +1,7 @@
 class Matrix(val matrix: List<CharArray>) {
     fun getAt(row: Int, col: Int) = matrix[row][col]
-    fun getAt(pos: Position) = matrix[pos.y][pos.x]
-    fun setAt(pos: Position, value: Char) { matrix[pos.y][pos.x] = value }
+    fun getAt(pos: PositionXY) = matrix[pos.y][pos.x]
+    fun setAt(pos: PositionXY, value: Char) { matrix[pos.y][pos.x] = value }
     val height get() = matrix.count()
     val width get() = matrix[0].count()
 
@@ -12,12 +12,12 @@ fun y24day6() {
     val lines = readResource("y24day6.txt").toList()
     val matrix = Matrix(lines.map { it.toCharArray() })
 
-    var guard = Position(-1, -1)
+    var guard = PositionXY(-1, -1)
 
     for (row in 0 until matrix.height) {
         for (col in 0 until matrix.width) {
             if (matrix.getAt(row, col) == '^') {
-                guard = Position(col, row)
+                guard = PositionXY(col, row)
             }
         }
     }
@@ -25,7 +25,7 @@ fun y24day6() {
     val previous = mutableSetOf(Pair(guard, matrix.getAt(guard)))
 
     var iter = 1
-    val obstacles = mutableSetOf<Position>()
+    val obstacles = mutableSetOf<PositionXY>()
 
     while (true) {
         println("Iteration $iter, guard at $guard facing ${matrix.getAt(guard)}")
@@ -58,7 +58,7 @@ fun y24day6() {
     println("obstacles = ${obstacles.count()}")
 }
 
-fun checkObstacle(dreamMatrix: Matrix, guard: Position, obstacle: Position, previous: MutableSet<Pair<Position, Char>>): Position? {
+fun checkObstacle(dreamMatrix: Matrix, guard: PositionXY, obstacle: PositionXY, previous: MutableSet<Pair<PositionXY, Char>>): PositionXY? {
     dreamMatrix.setAt(obstacle, 'O')
     var dreamGuard = guard.copy()
 
@@ -82,7 +82,7 @@ fun checkObstacle(dreamMatrix: Matrix, guard: Position, obstacle: Position, prev
 }
 
 
-fun getNextPositionAndDirection(matrix: Matrix, position: Position): Pair<Position, Char>
+fun getNextPositionAndDirection(matrix: Matrix, position: PositionXY): Pair<PositionXY, Char>
 {
     var direction = matrix.getAt(position);
 
