@@ -1,3 +1,7 @@
+package `2022`
+
+import readResource
+
 class Monkey() {
     val items = mutableListOf<Long>()
     lateinit var operation: (Long) -> Long
@@ -39,7 +43,7 @@ fun day11() {
         return { x -> x % divisor == 0L }
     }
 
-    val lines = readResource("day11.txt")
+    val lines = readResource("2022/day11.txt")
     for (i in lines.indices step 7) {
         val monkey = Monkey()
         val items = lines[i + 1].removePrefix("  Starting items: ").split(Regex(", ")).map { x -> x.toLong() }

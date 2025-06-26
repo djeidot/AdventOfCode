@@ -1,3 +1,7 @@
+package `2022`
+
+import readResource
+
 data class PositionXY(var x: Int, var y: Int)
 
 
@@ -34,7 +38,7 @@ fun day9() {
         }
     }
 
-    val lines = readResource("day9.txt")
+    val lines = readResource("2022/day9.txt")
     for (line in lines) {
         val lineList = line.split(' ')
         moveHead(lineList[0][0], lineList[1].toInt())

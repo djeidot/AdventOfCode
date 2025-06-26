@@ -1,5 +1,10 @@
+package `2022`
+
+import Direction
+import readResource
+
 fun day12() {
-    val lines = readResource("day12.txt")
+    val lines = readResource("2022/day12.txt")
 
     data class PositionRC(val r: Int, val c: Int) {
         val height: Char = lines[r][c]

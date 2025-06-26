@@ -1,3 +1,7 @@
+package `2022`
+
+import readResource
+
 enum class RPS {
     rock,
     paper,
@@ -28,7 +32,7 @@ fun day2() {
         }
     }
 
-    val lines = readResource("day2.txt")
+    val lines = readResource("2022/day2.txt")
     var overallScore = 0
     for (line in lines) {
         val oppoChar = line[0]

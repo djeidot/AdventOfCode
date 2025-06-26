@@ -1,5 +1,9 @@
+package `2022`
+
+import readResource
+
 fun day5() {
-    val lines = readResource("day5.txt")
+    val lines = readResource("2022/day5.txt")
     val stackBaseLine = lines.indexOfFirst { it[1] == '1' }
     val numberOfStacks = lines[stackBaseLine].last().digitToInt()
     val stacks = List<MutableList<Char>>(numberOfStacks) { mutableListOf() }

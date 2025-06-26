@@ -1,5 +1,9 @@
+package `2022`
+
+import readResource
+
 fun day1() {
-    val lines = readResource("day1.txt")
+    val lines = readResource("2022/day1.txt")
     val elfCalories = mutableListOf<Int>()
     var elf = 0
     lines.forEach { line ->

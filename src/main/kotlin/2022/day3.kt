@@ -1,3 +1,7 @@
+package `2022`
+
+import readResource
+
 fun day3() {
     fun priority(item: Char) = when (item) {
         in ('a'..'z') -> item.code - 97 + 1
@@ -5,7 +9,7 @@ fun day3() {
         else -> throw IllegalArgumentException()
     }
 
-    val lines = readResource("day3.txt")
+    val lines = readResource("2022/day3.txt")
     var prioritySum = 0
     for (line in lines) {
         assert(line.length % 2 != 0)

@@ -1,3 +1,7 @@
+package `2022`
+
+import readResource
+
 fun day10() {
     var cycles = 0
     var register = 1
@@ -27,7 +31,7 @@ fun day10() {
     }
 
     println("1234567890123456789012345678901234567890")
-    val lines = readResource("day10.txt")
+    val lines = readResource("2022/day10.txt")
     for (line in lines) {
         val lineList = line.split(' ')
         when (lineList[0]) {

@@ -1,10 +1,14 @@
+package `2022`
+
+import readResource
+
 fun day4() {
     infix fun IntRange.isIn(other: IntRange): Boolean =
         other.contains(this.first) && other.contains(this.last)
     infix fun IntRange.overlaps(other: IntRange): Boolean =
         this.any { other.contains(it) }
 
-    val lines = readResource("day4.txt")
+    val lines = readResource("2022/day4.txt")
     var fullyContainedAssignmentPairs = 0
     var overlappingPairs = 0
     for (line in lines) {
