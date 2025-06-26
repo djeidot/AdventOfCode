@@ -1,3 +1,5 @@
+import `2022`.PositionXY
+
 fun y24day8() {
     val antennas = mutableMapOf<Char, MutableList<PositionXY>>()
     val antinodes = mutableSetOf<PositionXY>()

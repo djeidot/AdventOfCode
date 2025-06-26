@@ -1,3 +1,5 @@
+import `2022`.PositionXY
+
 class Matrix(val matrix: List<CharArray>) {
     fun getAt(row: Int, col: Int) = matrix[row][col]
     fun getAt(pos: PositionXY) = matrix[pos.y][pos.x]
