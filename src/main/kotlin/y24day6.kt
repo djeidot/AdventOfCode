@@ -1,15 +1,5 @@
 import `2022`.PositionXY
 
-class Matrix(val matrix: List<CharArray>) {
-    fun getAt(row: Int, col: Int) = matrix[row][col]
-    fun getAt(pos: PositionXY) = matrix[pos.y][pos.x]
-    fun setAt(pos: PositionXY, value: Char) { matrix[pos.y][pos.x] = value }
-    val height get() = matrix.count()
-    val width get() = matrix[0].count()
-
-    fun copy() = Matrix(matrix.map { it.copyOf() })
-}
-
 fun y24day6() {
     val lines = readResource("y24day6.txt").toList()
     val matrix = Matrix(lines.map { it.toCharArray() })

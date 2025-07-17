@@ -5,7 +5,7 @@ fun y24day14() {
 
     val width = 101
     val height = 103
-    val iterations = 300
+    val iterations = 7510
 
     val robots = mutableListOf<Robot>()
     for (line in lines) {
@@ -13,21 +13,26 @@ fun y24day14() {
         robots.add(Robot(px.toInt(), py.toInt(), vx.toInt(), vy.toInt()))
     }
 
+    fun printLayout(robots: List<Robot>, iteration: Int) {
+        println("Iteration $iteration")
+        for (iy in 0 until height) {
+            for (ix in 0 until width) {
+                val robots = robots.count { it.px == ix && it.py == iy }
+                print(if (robots == 0) " " else "*" );
+            }
+            println()
+        }
+        println()
+    }
+
     for (iteration in 1..iterations) {
         for (robot in robots) {
             robot.px = (robot.px + robot.vx + width) % width
             robot.py = (robot.py + robot.vy + height) % height
         }
-        if (iteration > 220) {
-            println("Iteration $iteration")
-            for (iy in 0 until height) {
-                for (ix in 0 until width) {
-                    val robots = robots.count { it.px == ix && it.py == iy }
-                    print(if (robots == 0) "." else robots.toString() );
-                }
-                println()
-            }
-            println()
+
+        if (iteration == 7502) {
+            printLayout(robots, iteration)
         }
     }
 

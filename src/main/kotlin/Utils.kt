@@ -1,3 +1,5 @@
+import `2022`.PositionXY
+
 enum class Direction {
     UP,
     DOWN,
@@ -15,4 +17,16 @@ data class Position(val r: Int, val c: Int) {
     override fun toString(): String {
         return "{$r,$c}"
     }
+}
+
+class Matrix(val matrix: List<CharArray>) {
+    fun getAt(row: Int, col: Int) = matrix[row][col]
+    fun getAt(pos: PositionXY) = matrix[pos.y][pos.x]
+    fun getAt(pos: Position) = matrix[pos.r][pos.c]
+    fun setAt(pos: PositionXY, value: Char) { matrix[pos.y][pos.x] = value }
+    fun setAt(pos: Position, value: Char) { matrix[pos.r][pos.c] = value }
+    val height get() = matrix.count()
+    val width get() = matrix[0].count()
+
+    fun copy() = Matrix(matrix.map { it.copyOf() })
 }
