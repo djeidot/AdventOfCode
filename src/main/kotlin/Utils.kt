@@ -1,10 +1,10 @@
 import `2022`.PositionXY
 
-enum class Direction {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
+enum class Direction(val symbol: Char) {
+    UP('^'),
+    DOWN('v'),
+    LEFT('<'),
+    RIGHT('>')
 }
 
 data class Position(val r: Int, val c: Int) {
@@ -29,4 +29,38 @@ class Matrix(val matrix: List<CharArray>) {
     val width get() = matrix[0].count()
 
     fun copy() = Matrix(matrix.map { it.copyOf() })
+
+    fun findFirst(value: Char): Position {
+        for (r in 0 until height) {
+            for (c in 0 until width) {
+                val pos = Position(r, c)
+                if (getAt(pos) == value) {
+                    return pos
+                }
+            }
+        }
+        throw IllegalStateException()
+    }
+
+    fun findAll(value: Char): List<Position> {
+        val posList = mutableListOf<Position>()
+        for (r in 0 until height) {
+            for (c in 0 until width) {
+                val pos = Position(r, c)
+                if (getAt(pos) == value) {
+                    posList.add(pos)
+                }
+            }
+        }
+        return posList
+    }
+
+    fun print() {
+        for (r in 0 until height) {
+            for (c in 0 until width) {
+                print(getAt(Position(r, c)))
+            }
+            println()
+        }
+    }
 }

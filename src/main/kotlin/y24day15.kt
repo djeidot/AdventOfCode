@@ -24,14 +24,8 @@ fun y24day15() {
         }
     }
 
-    for (r in 0 until map.height) {
-        for (c in 0 until map.width) {
-            if (map.getAt(Position(r, c)) == '@') {
-                robot = Position(r, c);
-                map.setAt(Position(r, c), '.')
-            }
-        }
-    }
+    robot = map.findFirst('@')
+    map.setAt(robot, '.')
 
     fun printMap(mmap: Matrix) {
         println()
@@ -72,25 +66,14 @@ fun y24day15() {
     }
 
     var gpsSum = 0
-    for (r in 0 until map.height) {
-        for (c in 0 until map.width) {
-            if (map.getAt(Position(r, c)) == 'O') {
-                gpsSum += 100 * r + c
-            }
-        }
-    }
+    val boxList = map.findAll('O')
+    boxList.forEach { gpsSum += 100 * it.r + it.c }
 
     print("GPS sum 1: $gpsSum")
 
     // Set robot for part 2
-    for (r in 0 until map2.height) {
-        for (c in 0 until map2.width) {
-            if (map2.getAt(Position(r, c)) == '@') {
-                robot = Position(r, c);
-                map2.setAt(Position(r, c), '.')
-            }
-        }
-    }
+    robot = map2.findFirst('@');
+    map2.setAt(robot, '.')
 
     fun canMoveBoxes2(pos: Position, dir: Direction): Boolean {
         val pos1 = pos.offset(dir)
@@ -238,13 +221,8 @@ fun y24day15() {
     printMap(map2)
 
     gpsSum = 0
-    for (r in 0 until map2.height) {
-        for (c in 0 until map2.width) {
-            if (map2.getAt(Position(r, c)) == '[') {
-                gpsSum += 100 * r + c
-            }
-        }
-    }
+    val boxList2 = map2.findAll('[')
+    boxList2.forEach { gpsSum += 100 * it.r + it.c }
 
     print("GPS sum 2: $gpsSum")
 }
