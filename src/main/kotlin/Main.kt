@@ -1,5 +1,5 @@
 fun main() {
-    y24day16()
+    y24day17()
 }
 
 // helpers
