@@ -4,7 +4,6 @@ import readResource
 
 data class PositionXY(var x: Int, var y: Int)
 
-
 fun day9() {
     val head = PositionXY(0, 0)
     val tailSize = 1

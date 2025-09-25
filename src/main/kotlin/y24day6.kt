@@ -1,5 +1,3 @@
-import `2022`.PositionXY
-
 fun y24day6() {
     val lines = readResource("y24day6.txt").toList()
     val matrix = Matrix(lines.map { it.toCharArray() })
